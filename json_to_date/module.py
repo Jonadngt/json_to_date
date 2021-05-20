@@ -25,4 +25,4 @@ def get_data(path):
     with open(path) as file:
         data = json.load(file)
         obj_data = json.loads(json.dumps(data), object_hook=obj)
-        return obj_data
+        return obj_data 

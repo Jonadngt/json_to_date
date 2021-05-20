@@ -6,4 +6,4 @@ __version__ = "0.1.0"
 # Cargar funciones
 from .module import(
     get_data
-)
+) 
