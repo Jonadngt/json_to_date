@@ -1,2 +1,2 @@
-# Seteo de las configuraciones
-#URL = 'https://www.python.com' 
+# Set the settings
+#URL = 'https://www.python.com'

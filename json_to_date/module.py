@@ -4,25 +4,50 @@ except:
     pass
 
 import json
+import requests
 
-# Clase
+# Class
 class obj:
     # constructor
     def __init__(self, dict):
         self.__dict__.update(dict)
 
-# Funcion
-def get_data(path):
-    """ Get the location of a json file and convert it to an object
+# Functions
+def _get(dict):
+    """
+    Get a dictionary and convert it to an object 
+    """
+    obj_data = json.loads(json.dumps(dict), object_hook=obj)
+    return obj_data
 
-    Receive
-    ----------
-    /path/file.json
-
-    Return
-    ----------
-    object """
+def get_from_file(path):
+    """
+    Usage
+    -----------------
+    File to date:
+    >>> import json_to_date
+    >>> dir = "path/file.json"
+    >>> data = json_to_date.module.get_from_file(dir)
+    >>> print("Key value: " + data.<key>)
+    Key value: value 
+    """
     with open(path) as file:
         data = json.load(file)
-        obj_data = json.loads(json.dumps(data), object_hook=obj)
-        return obj_data 
+        obj_data = _get(data)
+        return obj_data
+
+def get_from_url(url):
+    """
+    Usage
+    -----------------
+    URL to date:
+    >>> import json_to_date
+    >>> url = "https://jsondata.dev/api/user/1/"
+    >>> data = json_to_date.module.get_from_url(url)
+    >>> print("Key value: " + data.<key>)
+    Key value: value
+    """
+    data_raw = requests.get(url)
+    data = json.loads(data_raw.text)
+    obj_data = _get(data)
+    return obj_data
